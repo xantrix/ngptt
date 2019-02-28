@@ -8,6 +8,12 @@ export class SearchFilterPipe implements PipeTransform {
         if(!value) { return items; }
         if(!items) { return []; }
 
-        return items.filter(it => it[field].toLowerCase().includes(value.toLowerCase()));
+        return items.filter(it => {
+            if (typeof(it[field]) !== 'boolean') {
+                return it[field].toLowerCase().includes((<string>value).toLowerCase());
+            } else {
+                return (it[field]) === (value === 'true');
+            }
+        });
     }
 }
