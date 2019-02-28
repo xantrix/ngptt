@@ -20,7 +20,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
   `]
 })
 export class ProjectDetailComponent implements OnInit, OnDestroy {
-  @Input() project: Project;
+  project: Project;
   projectSubscription: Subscription;
   editProjectForm: FormGroup;
 
