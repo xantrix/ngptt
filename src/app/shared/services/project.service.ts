@@ -47,7 +47,7 @@ export class ProjectService {
 
   add(project: Project) {
       this.projects.push(project);
-      this.projectsSubject.next(this.projects.slice());
+      return project;
   }
 
   get(code: string) {
