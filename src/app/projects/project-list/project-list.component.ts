@@ -1,61 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Project } from '../../shared/Project';
+import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({
     selector: 'ngptt-project-list',
     templateUrl: './project-list.component.html'
 })
-export class ProjectListComponent {
-    projects: Project[] = [
-        {
-            id: Symbol(),
-            code: 'NHusYJl',
-            name: 'Progetto Alpha',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 1, 31),
-            end: new Date(2019, 3, 15),
-            priority: 'medium',
-            done: true,
-            tasks: []
-        },
-        {
-            id: Symbol(),
-            code: 'SJieYKl',
-            name: 'Progetto Beta',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 3, 31),
-            end: new Date(2019, 6, 15),
-            priority: 'low',
-            done: true,
-            tasks: []
-        },
-        {
-            id: Symbol(),
-            code: 'POjeGBs',
-            name: 'Progetto Gamma',
-            description: 'Lorem ipsum dolor sit amet.',
-            start: new Date(2019, 8, 15),
-            priority: 'low',
-            done: false,
-            tasks: []
-        },
-    ];
+export class ProjectListComponent implements OnInit {
+    projects: Project[] = [];
 
     selectedProject: Project;
     searchedProject: Project;
 
-    constructor() { }
+    constructor(private projectService: ProjectService) { }
 
-    selectProject(project: Project) {
-        this.selectedProject = project;
+    ngOnInit() {
+        this.projects = this.projectService.getAll();
     }
 
-    addNewProject(project: Project) {
-        this.projects.push(project);
+    selectProject(project: Project) {
+        this.selectedProject = this.projectService.get(project.id);
+    }
+
+    addProject(project: Project) {
+       this.projectService.add(project);
     }
 
     searchProject(project: Project) {
-        console.log(project);
         this.searchedProject = project;
     }
 }
