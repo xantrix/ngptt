@@ -23,6 +23,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   project: Project;
   projectSubscription: Subscription;
   editProjectForm: FormGroup;
+  editMode = false;
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
@@ -77,7 +78,13 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     (<FormArray>this.editProjectForm.get('tasks')).removeAt(index);
   }
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+
   submitProjectForm() {
+    this.toggleEditMode();
   }
 
   ngOnDestroy() {
