@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Project } from '../shared/Project';
+import { Project } from '../../shared/Project';
 import { NgForm } from '@angular/forms';
 
 @Component({
