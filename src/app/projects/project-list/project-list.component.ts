@@ -19,10 +19,7 @@ export class ProjectListComponent implements OnInit {
         this.projects$ = this.projectService.projects$;
     }
 
-    selectProject(project: Project) {
-        this.selectedProject = this.projectService.get(project.id);
-    }
-
+   
     addProject(project: Project) {
        this.projectService.add(project);
     }
