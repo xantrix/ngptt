@@ -10,6 +10,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { ProjectSearchComponent } from './projects/project-search/project-search.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     ProjectInsertComponent,
     ProjectDetailComponent,
     ProjectSearchComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
