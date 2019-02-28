@@ -41,5 +41,11 @@ export class ProjectListComponent {
         },
     ];
 
+    selectedProject: Project;
+
     constructor() { }
+
+    selectProject(project: Project) {
+        this.selectedProject = project;
+    }
 }
