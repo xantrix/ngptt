@@ -1,3 +1,13 @@
+<div class="row mt-5 justify-content-end">
+    <div class="col-8">
+        <h2 class="">I miei progetti</h2>
+    </div>
+    <div class="col text-right">
+        <button class="btn btn-primary" [routerLink]="['/projects','add']">Aggiungi Progetto</button>
+    </div>
+</div>
+<hr/>
+
 <ngptt-project-search (searching)="searchProject($event)"></ngptt-project-search>
 {{searchedProject?.value}}
 <div class="card-columns">
@@ -14,10 +24,8 @@
                     <small *ngIf="project.end"> - {{ project.end | date: 'dd/MM/yyyy' }}</small>
                 </h6>
                 <p class="card-text">{{ project.description }}</p>
-                <a href="#" class="btn btn-primary btn-sm" (click)="selectProject(project)">Vai al Progetto</a>
+                <a href="#" class="btn btn-primary btn-sm" [routerLink]="['/projects','detail']">Vai al Progetto</a>
             </div>
         </div>
     </div>
 </div>
-<ngptt-project-detail [project]="selectedProject"></ngptt-project-detail>
-<ngptt-project-insert (submitted)="addProject($event)"></ngptt-project-insert>
