@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Project } from '../shared/Project';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'ngptt-project-list',
@@ -47,5 +48,15 @@ export class ProjectListComponent {
 
     selectProject(project: Project) {
         this.selectedProject = project;
+    }
+
+    submitProjectForm(form: NgForm) {
+        this.projects.push({
+            id: Symbol(),
+            code: Math.random().toString(36).replace('0.', '').substring(2, 9),
+            done: false,
+            tasks: [],
+            ...form.value
+        });
     }
 }
