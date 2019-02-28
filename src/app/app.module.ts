@@ -9,9 +9,10 @@ import { ProjectInsertComponent } from './projects/project-insert/project-insert
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { ProjectSearchComponent } from './projects/project-search/project-search.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { SectionHeaderComponent } from './shared/components/section-header/section-header.component';
 
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     ProjectDetailComponent,
     ProjectSearchComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    SectionHeaderComponent
   ],
   imports: [
     BrowserModule,
