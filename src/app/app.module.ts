@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { SearchFilterPipe } from './shared/search-filter.pipe';
 import { ProjectInsertComponent } from './projects/project-insert/project-insert.component';
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ProjectInsertComponent } from './projects/project-insert/project-insert
     AppComponent,
     SearchFilterPipe,
     ProjectListComponent,
-    ProjectInsertComponent
+    ProjectInsertComponent,
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,
