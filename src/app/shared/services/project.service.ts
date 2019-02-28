@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../Project';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -58,7 +58,9 @@ export class ProjectService {
   ];
   
   private projectsSubject = new BehaviorSubject<Project[]>(this.projects);
+  private projectSubject = new Subject<Project>();
   public projects$ = this.projectsSubject.asObservable();
+  public project$ = this.projectSubject.asObservable();
 
   add(project: Project) {
       this.projects.push(project);
@@ -69,6 +71,12 @@ export class ProjectService {
       return this.projects$.pipe(
           map((projects: Project[]) => projects.find(project => project.code === code))
       );
+  }
+
+  update(project: Project) {
+    const projectToUpdate: number = this.projects.map(project => project.code).indexOf(project.code);
+    this.projects[projectToUpdate] = project;
+    this.projectSubject.next({...this.projects[projectToUpdate]});
   }
 
 }

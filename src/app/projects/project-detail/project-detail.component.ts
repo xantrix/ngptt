@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Project } from 'src/app/shared/Project';
 import { ActivatedRoute, Route, ParamMap } from '@angular/router';
 import { ProjectService } from 'src/app/shared/services/project.service';
-import { Observable, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Subscription, merge } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { DatePipe } from '@angular/common';
@@ -29,8 +29,11 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectSubscription = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.projectService.get(params.get('code'))),
+    this.projectSubscription = merge(
+      this.route.paramMap.pipe(
+        switchMap((params: ParamMap) => this.projectService.get(params.get('code'))),
+      ),
+      this.projectService.project$
     ).subscribe((project) => {
       this.project = project;
       this.initForm();
@@ -85,8 +88,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     this.editMode = !this.editMode;
   }
 
-
   submitProjectForm() {
+    this.projectService.update(this.editProjectForm.value);
     this.toggleEditMode();
   }
 
